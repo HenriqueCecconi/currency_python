@@ -1,5 +1,10 @@
 url = 'http://bytebank.com/exchange?inputCurrency=real&outputCurrency=dollar&quantity=100'
 
+# Sanitizing and validating the URL
+url = url.strip()
+if url == '':
+    raise ValueError('The URL is empty')
+
 # Separate base and parameters
 question_index = url.find('?')
 url_base = url[:question_index]
