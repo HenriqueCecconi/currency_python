@@ -1,0 +1,1 @@
+url = "http://bytebank.com/exchange?inputCurrency=real&outputCurrency=dollar&quantity=100"
