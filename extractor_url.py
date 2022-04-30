@@ -7,10 +7,8 @@ class ExtractorURL():
         return url.strip()
 
     def validate_url(self):
-        if self.url == '':
+        if not self.url:
             raise ValueError('The URL is empty')
-        else:
-            return url
             
     def get_url_base(self):
         question_index = self.url.find('?')
