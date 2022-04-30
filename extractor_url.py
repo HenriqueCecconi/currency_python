@@ -4,7 +4,10 @@ class ExtractorURL():
         self.validate_url()
     
     def sanitize_url(self, url):
-        return url.strip()
+        if type(url) == str:
+            return url.strip()
+        else:
+            return ''
 
     def validate_url(self):
         if not self.url:
