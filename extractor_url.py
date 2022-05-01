@@ -1,4 +1,5 @@
 import re
+import warnings
 
 class ExtractorURL():
     def __init__(self, url):
@@ -23,13 +24,19 @@ class ExtractorURL():
             
     def get_url_base(self):
         question_index = self.url.find('?')
-        url_base = self.url[:question_index]
-        return url_base 
+        if question_index == -1:
+            return self.url
+        else:
+            url_base = self.url[:question_index]
+            return url_base 
 
     def get_url_parameter(self):
         question_index = self.url.find('?')
-        url_parameter = self.url[question_index+1:]
-        return url_parameter
+        if question_index == -1:
+            warnings.warn('The URL does not contain any parameters')
+        else:
+            url_parameter = self.url[question_index+1:]
+            return url_parameter
         
     def get_parameter_value(self, parameter_name):
         parameter_index = self.get_url_parameter().find(parameter_name)
@@ -41,3 +48,9 @@ class ExtractorURL():
             parameter_value = self.get_url_parameter()[value_index:ampersand_index]
 
         return parameter_value
+
+    def __len__(self):
+        return len(self.url)
+
+    def __str__(self):
+        return f'{self.url} \nParameters: {self.get_url_parameter()} \nURL Base: {self.get_url_base()}'
