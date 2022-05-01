@@ -54,3 +54,6 @@ class ExtractorURL():
 
     def __str__(self):
         return f'{self.url} \nParameters: {self.get_url_parameter()} \nURL Base: {self.get_url_base()}'
+
+    def __eq__(self, other):
+        return self.url == other.url
